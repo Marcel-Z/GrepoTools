@@ -3,15 +3,15 @@
 // @namespace	https://www.grepotools.nl/
 // @version		1.0.1
 // @author		Marcel_Z
-// @description Grepotools.nl | Ocean Grid | Een grid systeem voor de Grepolis wereldkaart
+// @description Grepotools.nl | Script for InnoGames Grepolis
 // @match       http://*.grepolis.com/game/*
 // @match       https://*.grepolis.com/game/*
 // @match		https://*grepotools.nl/*
-// @updateURL   https://www.grepotools.nl/grepotools/grepotools.user.js
+// @updateURL   https://www.grepotools.nl/grepotools/script/grepotools.user.js
 // @downloadURL	https://www.grepotools.nl/grepotools/script/grepotools.user.js
 // @require		https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @icon		https://www.grepotools.nl/grepotools/icon/ocean_grid_setup_icon.png
-// @icon64		https://www.grepotools.nl/grepotools/icon/ocean_grid_logo.jpg
+// @icon        https://www.grepotools.nl/grepotools/icon/logo_32x32.png
+// @iconURL     https://www.grepotools.nl/grepotools/icon/logo_32x32.png
 // @copyright	2022 Marcel_Z
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
 // @grant		GM_setValue
@@ -87,14 +87,15 @@ og_instelling_grid_zichtbaar{
 }
 
 #og_menu_achtergrond{
-background: url(https://www.grepotools.nl/ocean_grid/afbeeldingen/ocean_grid_background.png) no-repeat;
-    height: 303px;
-    width: 563px;
-    right: -10px;
-    top: 225px;
+background: url('https://www.grepotools.nl/grepotools/afbeeldingen/logo_425x425.png') no-repeat;
+    height: 200px;
+    width: 200px;
+    right: 10px;
+    bottom: -210px;
     z-index: -1;
     background-size: 100% auto;
     position: absolute;
+    opacity: .3;
 }
 `);
 
@@ -315,7 +316,7 @@ $( document ).ready(function() {
     if(!(vertaling[grepo_taal])){
         grepo_taal="en";
     }
-    console.log ("Grepolis Ocean Grid: "+vertaling[grepo_taal].actief+" | "+vertaling[grepo_taal].versie+": "+og_versie+" | "+vertaling[grepo_taal].wereld+": "+grepo_world_data+" | "+vertaling[grepo_taal].taal+": "+grepo_taal);
+    console.log ("Grepolis Grepotools Script: "+vertaling[grepo_taal].actief+" | "+vertaling[grepo_taal].versie+": "+og_versie+" | "+vertaling[grepo_taal].wereld+": "+grepo_world_data+" | "+vertaling[grepo_taal].taal+": "+grepo_taal);
 
     laad_instellingen(); // instellingen laden
 
@@ -420,7 +421,7 @@ function instellingen_icoon() {
         a.className = 'btn_settings circle_button'; // Grepo style
         var img = document.createElement('div');
         img.style.margin = '6px 0px 0px 5px';
-        img.style.background = "url(https://www.grepotools.nl/ocean_grid/afbeeldingen/ocean_grid_setup_icon.png) no-repeat 0px 0px";
+        img.style.background = "url(https://www.grepotools.nl/grepotools/afbeeldingen/logo_instellingen_groen.png) no-repeat 0px 0px";
         img.style.width = '22px';
         img.style.height = '22px';
         img.style.backgroundSize = '100%';
@@ -451,7 +452,7 @@ function toon_instellingen_tooltip(){
     $('#popup_div').css('top', (event.clientY+15)+"px");
     $('#popup_div').css('display', 'block');
     $('#popup_div').css('opacity', '1');
-    $('#popup_content').html("<div>GrepoTools.nl | Ocean Grid<br>"+vertaling[grepo_taal].versie+": "+og_versie+"<br>"+vertaling[grepo_taal].instellingen+"</div>");
+    $('#popup_content').html("<div>Grepolis Grepotools Script<br>"+vertaling[grepo_taal].versie+": "+og_versie+"<br>"+vertaling[grepo_taal].instellingen+"</div>");
 }
 
 // Instellingen icoon (gods area) - tooltip verbergen
@@ -585,7 +586,7 @@ function maak_kleuren_opties(){
 function maak_instellingen_venster() {
     // Menu links
     if (!$("#og_menu_links").get(0)) {
-        $(".settings-menu ul:last").append('<li id="og_menu_li"><img style="margin-top: 0px;height:15px;vertical-align: middle;"; id="og_menu_icon" src="https://www.grepotools.nl/ocean_grid/afbeeldingen/ocean_grid_setup_icon.png" ></div><a id="og_menu_links">Ocean Grid - Instellingen</a></li>');
+        $(".settings-menu ul:last").append('<li id="og_menu_li"><img style="margin-top: 0px;height:16px;vertical-align: middle;"; id="og_menu_icon" src="https://www.grepotools.nl/grepotools/afbeeldingen/logo_instellingen_groen.png" ></div><a id="og_menu_links"> Grepotools - Instellingen</a></li>');
     }
 
     // Geklikt op ander menu
@@ -607,7 +608,7 @@ function maak_instellingen_venster() {
             .append(
             $('<div/>', {'id':'og_menu_rechts', 'class':'player_settings section'})
             .append($('<div/>', {'id':'og_menu_achtergrond'}))
-            .append($('<div/>', {'class':'game_header bold'}).text('Ocean Grid | '+vertaling[grepo_taal].instellingen))
+            .append($('<div/>', {'class':'game_header bold'}).text('Grepolis Grepotools Script | '+vertaling[grepo_taal].instellingen))
             .append($('<div/>', {'class':'group'})
                     // Instelling grid aan/uit zetten
                     .append($('<div/>', {'id':'og_instelling_grid_zichtbaar', 'class':'checkbox_new'})
@@ -651,7 +652,7 @@ function maak_instellingen_venster() {
                     .append($('<label/>', {'for': 'og_instelling_grid_oceanen'}).text(vertaling[grepo_taal].og_instelling_grid_oceanen_voorbeeld))
                     .append($('<textarea/>',{'id':'og_instelling_grid_oceanen','style':'width: 360px; min-height: 100px;'}).val(og_raster_oc))
                     // Script informatie
-                    .append("<div class='og_info'>Grepolis Ocean Grid: | "+vertaling[grepo_taal].versie+': '+og_versie+" | "+vertaling[grepo_taal].wereld+": "+grepo_world_data+" | "+vertaling[grepo_taal].taal+": "+grepo_taal+"<br><a id='og_link_website' href='https://www.grepotools.nl' target='_blank'>GrepoTools.nl</a> | 2022 - "+og_datum.getFullYear()+' | Marcel-Z </div>')
+                    .append("<div class='og_info'>Grepolis Grepotools Script: | "+vertaling[grepo_taal].versie+': '+og_versie+" | "+vertaling[grepo_taal].wereld+": "+grepo_world_data+" | "+vertaling[grepo_taal].taal+": "+grepo_taal+"<br><a id='og_link_website' href='https://www.grepotools.nl' target='_blank'>GrepoTools.nl</a> | 2022 - "+og_datum.getFullYear()+' | Marcel-Z </div>')
                    )
         )
 
